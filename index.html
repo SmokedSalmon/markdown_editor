@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Markdown editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script type="text/javascript" src="./assets/js/easymde.min.js"></script>
+    <script type="text/javascript" src="./assets/js/popper.min.js"></script>
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <link rel="stylesheet" href="./assets/style/easymde.min.css" />
+    <link rel="stylesheet" href="./assets/style/style.css" />
 </head>
 <body>
     <textarea id="editing-area"></textarea>
+    <div class="bottom-panel">
+        <button role="button" id="copy-and-go">Copy & Go</button>
+        <button role="button" id="report-issue">Report issue</button>
+        <button role="button" id="todos">To be supported</button>
+    </div>
+    <div id="draw-table-popup" class="popup">
+        <table class="draw-table-mockup">
+            <tbody>
+                <tr>
+                    <td /><td /><td /><td /><td /><td /><td /><td />
+                    <th /><th /><th /><th /><th /><th /><th /><th />
+                </tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+                <tr><td /><td /><td /><td /><td /><td /><td /><td /></tr>
+            </tbody>
+        </table>
+        <input type="checkbox" id="draw-table-toggle-header" name="Header">
+        <label for="draw-table-toggle-header">Header</label>
+        <button class="apply">Apply</button>
+    </div>
+    <div id="guide-popup" class="popup">
+        <ul>
+            <li><a href="https://www.markdownguide.org/basic-syntax/">Markdown Basics</a></li>
+            <li><a href="https://www.markdownguide.org/extended-syntax/#tables">Extended Markdown Guide</a></li>
+        </ul>
+    </div>
 </body>
 </html>
