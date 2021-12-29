@@ -5,6 +5,28 @@
     visibility: hidden;
 }
 
+
+button.new-paragraph i::before {
+    content: "\2B90"
+}
+button.new-paragraph::after {
+    content: "p";
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 900;
+    right: 1px;
+}
+button.new-line i::before {
+    content: "\2B90"
+}
+
+button.new-paragraph i::before, button.new-line i::before {
+    font-size: 16px;
+    top: 3px;
+    position: relative;
+    font-weight: 900;
+}
+
 #draw-table-popup {
     width: auto;
     z-index: 100;
@@ -34,9 +56,18 @@
 
 #guide-popup {
     width: 20rem;
+    z-index: 100;
 }
 
-/* supplement */
+/* heading dropdown */
+button.heading.set::after {
+    content: '\f0dc';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 12px;
+    top: 4px;
+}
+button.heading.set, button.heading.set:hover { background: none };
 .editor-toolbar button.heading-4:after { content: '4'; }
 .editor-toolbar button.heading-5:after { content: '5'; }
 .editor-toolbar button.heading-6:after { content: '6'; }
