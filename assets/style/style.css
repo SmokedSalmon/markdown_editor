@@ -2,7 +2,6 @@
     background: white;
     padding: 0.5rem;
     border: 1px solid lightgray;
-    visibility: hidden;
 }
 
 
@@ -30,7 +29,13 @@ button.new-paragraph i::before, button.new-line i::before {
 #draw-table-popup {
     width: auto;
     z-index: 100;
+    visibility: hidden;
+    cursor: default;
 }
+button.table[title="Table"]:focus #draw-table-popup, button.table[title="Table"]:focus-within #draw-table-popup {
+    visibility: visible;
+}
+
 #draw-table-popup table.draw-table-mockup {
     margin-top: -2px;
     margin-inline-start: -2px;
@@ -57,7 +62,14 @@ button.new-paragraph i::before, button.new-line i::before {
 #guide-popup {
     width: 20rem;
     z-index: 100;
+    text-align: start;
+    visibility: hidden;
+    cursor: default;
 }
+button.help:focus #guide-popup, button.help:focus-within #guide-popup {
+    visibility: visible;
+}
+#guide-popup p { margin-block: .5rem; }
 
 /* heading dropdown */
 button.heading.set::after {

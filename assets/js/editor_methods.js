@@ -1,11 +1,4 @@
- // Post setup actions
- function hideAllPopups () {
-  document.querySelectorAll('.popup').forEach(el => { el.blur(); el.style.visibility = 'hidden'; })
-}
-
 /* Draw table drop down */
-
-
 function drawTable (editor, row, column, options = {}) {
   const { hasHeaderRow } = options;
   let tableStr = '\n\n';
@@ -31,19 +24,12 @@ function prepareDrawTableDropdown(editor) {
   const drawTableMocked = document.querySelector('#draw-table-popup table.draw-table-mockup');
   const drawTableToggleHeaderSwitcher = drawTableMenu.querySelector('#draw-table-toggle-header');
   const drawTableFirstRow = drawTableMenu.querySelector('table.draw-table-mockup tr:first-child');
-  const drawTableApplyButton = drawTableMenu.querySelector('button.apply');
   Popper.createPopper(drawTableMenuButton, drawTableMenu, {
       placement: 'bottom-start',
   }); 
+  drawTableMenu.parentElement.removeChild(drawTableMenu);
+  drawTableMenuButton.appendChild(drawTableMenu);
   
-  drawTableMenuButton.addEventListener('click', (e) => {
-      const visibilityToChange = ['hidden', ''].includes(drawTableMenu.style.visibility) ? 'visible' : 'hidden';
-      hideAllPopups();
-      e.stopPropagation()
-      drawTableMenu.style.visibility = visibilityToChange;
-      drawTableMenu.addEventListener('click', (e) => e.stopPropagation());
-  })
-  drawTableApplyButton.addEventListener('click', () => { editor.codemirror.focus(); drawTableMenu.style.visibility = 'hidden'});
   drawTableToggleHeaderSwitcher.addEventListener('change', (e) => {
       const headers = new Array(...drawTableFirstRow.querySelectorAll('th'));
       const nonHeaders = new Array(...drawTableFirstRow.querySelectorAll('td'));
@@ -97,21 +83,18 @@ function prepareGuideMenu() {
   const guideMenu = document.querySelector('#guide-popup');
   Popper.createPopper(guideMenuButton, guideMenu, {
       placement: 'bottom-start',
-  }); 
-  guideMenuButton.addEventListener('click', (e) => {
-      const visibilityToChange = ['hidden', ''].includes(guideMenu.style.visibility) ? 'visible' : 'hidden';
-      hideAllPopups();
-      e.stopPropagation()
-      guideMenu.style.visibility = visibilityToChange;
-      guideMenu.addEventListener('click', (e) => e.stopPropagation());
-  })
+  });
+  guideMenu.parentElement.removeChild(guideMenu);
+  guideMenuButton.appendChild(guideMenu);
 }
 
 
 
 /* Other customized actions */
 function newParagraph(editor) {
-  editor.codemirror.doc.replaceRange('\n\n', editor.codemirror.getCursor('to'));
+  const cursorEnd = editor.codemirror.getCursor('to')
+  editor.codemirror.doc.replaceRange('\n\n', cursorEnd);
+  editor.codemirror.doc.replaceSeletion(cursorEnd);
   editor.codemirror.focus();
 }
 

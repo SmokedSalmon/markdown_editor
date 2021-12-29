@@ -108,7 +108,6 @@ window.onload = function () {
 
     prepareControlPanel()
 
-    document.addEventListener('click', hideAllPopups);
     // show side-by-side
     editor.toggleSideBySide();
 
