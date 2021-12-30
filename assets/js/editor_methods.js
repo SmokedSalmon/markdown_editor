@@ -92,9 +92,7 @@ function prepareGuideMenu() {
 
 /* Other customized actions */
 function newParagraph(editor) {
-  const cursorEnd = editor.codemirror.getCursor('to')
-  editor.codemirror.doc.replaceRange('\n\n', cursorEnd);
-  editor.codemirror.doc.replaceSeletion(cursorEnd);
+  editor.codemirror.doc.replaceRange('\n\n', editor.codemirror.getCursor('to'));
   editor.codemirror.focus();
 }
 
@@ -144,4 +142,39 @@ function prepareControlPanel() {
           }, 100)
       }
   });
+}
+
+function comingSoonMessage() {
+  const comingSoonAnchor = document.getElementById('coming-soon');
+  const comingSoonPopup = document.getElementById('coming-soon-popup');
+  comingSoonPopup.parentElement.removeChild(comingSoonPopup);
+  comingSoonAnchor.appendChild(comingSoonPopup);
+  Popper.createPopper(comingSoonAnchor, comingSoonPopup, {
+    placement: 'top-start',
+    modifiers: [{ name: 'offset', options: { offset: [0, -5] } }],
+  });
+}
+
+function newLineNewParagraphTip() {
+  const newLineButton = document.querySelector('button.new-line');
+  const newLinePopup = document.getElementById('new-line-tip');
+  Popper.createPopper(newLineButton, newLinePopup, {
+    placement: 'bottom-start',
+    modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+  });
+  newLineButton.addEventListener('click', () => {
+    newLinePopup.classList.add('visible');
+    setTimeout(() => newLinePopup.classList.remove('visible'), 2000)
+  })
+  const newParagraphButton = document.querySelector('button.new-paragraph');
+  const newParagraphPopup = document.getElementById('new-paragraph-tip');
+  Popper.createPopper(newParagraphButton, newParagraphPopup, {
+    placement: 'bottom-start',
+    modifiers: [{ name: 'offset', options: { offset: [0, 10] } }],
+  });
+  newParagraphButton.addEventListener('click', () => {
+    newParagraphPopup.classList.add('visible');
+    setTimeout(() => newParagraphPopup.classList.remove('visible'), 2000)
+  })
+  
 }

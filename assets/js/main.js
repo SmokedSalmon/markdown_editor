@@ -106,7 +106,11 @@ window.onload = function () {
 
     prepareGuideMenu();
 
-    prepareControlPanel()
+    prepareControlPanel();
+
+    comingSoonMessage();
+
+    newLineNewParagraphTip();
 
     // show side-by-side
     editor.toggleSideBySide();
